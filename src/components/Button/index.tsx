@@ -1,5 +1,6 @@
 import { gradientBorderInner, gradientBorderOuter } from '../Theme';
-import { ButtonHTMLAttributes, DetailedHTMLProps, PropsWithChildren } from 'react';
+import { ForwardedRef, forwardRef, PropsWithChildren, RefObject } from 'react';
+import { AriaButtonProps, useButton } from 'react-aria';
 import styled from 'styled-components';
 
 export interface ButtonProps {
@@ -66,13 +67,19 @@ const Wrapper = styled.div<ButtonProps>`
   }
 `;
 
-export const IconButton = (
-  props: DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>,
-) => (
-  <IconButtonWrapper>
-    <button {...props} />
-  </IconButtonWrapper>
-);
+export const IconButton = forwardRef((
+  props: AriaButtonProps<"button">,
+  ref: ForwardedRef<HTMLButtonElement>
+) => {
+  const { buttonProps } = useButton(props, ref as RefObject<HTMLButtonElement>);
+  return (
+    <IconButtonWrapper>
+      <button {...buttonProps} ref={ref}>
+        {props.children}
+      </button>
+    </IconButtonWrapper>
+  )
+})
 
 const IconButtonWrapper = styled.div`
   ${gradientBorderOuter}

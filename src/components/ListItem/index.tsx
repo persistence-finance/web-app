@@ -2,14 +2,13 @@ import { gradientBorderInner, gradientBorderOuter } from '../Theme';
 import { PropsWithChildren } from 'react';
 import styled from 'styled-components';
 
-export const ListItem = ({ children }: PropsWithChildren) => (
-  <Wrapper>
+export const ListItem = ({ children, ...rest }: PropsWithChildren) => (
+  <Wrapper {...rest}>
     <Inner>{children}</Inner>
   </Wrapper>
 );
 
 const Wrapper = styled.li`
-  background-color: var(--background-primary);
   ${gradientBorderOuter}
 `;
 
