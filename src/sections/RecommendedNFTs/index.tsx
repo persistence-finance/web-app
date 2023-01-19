@@ -1,6 +1,6 @@
 import { NftCard } from './Card';
 import styled from 'styled-components';
-import { Bar, Heading, Grid, Link } from 'components';
+import { Bar, Heading, Grid, Link, Breakpoints } from 'components';
 
 export const RecommendedNFTs = () => {
   return (
@@ -10,7 +10,7 @@ export const RecommendedNFTs = () => {
         <Link>Marketplace</Link>
       </Bar>
 
-      <Grid columns={3}>
+      <Grid>
         <NftCard
           title="Voiceless humanity"
           subtitle="Digital artist"
@@ -34,4 +34,10 @@ export const RecommendedNFTs = () => {
   );
 };
 
-const Wrapper = styled.section``;
+const Wrapper = styled.section`
+  --columns: 3;
+
+  ${Breakpoints.Md} {
+    --columns: 1;
+  }
+`;

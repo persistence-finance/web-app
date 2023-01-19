@@ -1,4 +1,3 @@
-import { useFrame } from '@react-three/fiber';
 import styled from 'styled-components';
 import {
   Button,
@@ -40,7 +39,7 @@ const Torus = () => {
 };
 
 const useTorusScale = () => {
-  return useMediaScale([775, 1.45], [1175, 2.75])
+  return useMediaScale([550, 1.25], [1175, 2.75])
 }
 
 const Outer = styled.section`

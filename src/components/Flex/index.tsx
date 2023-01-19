@@ -11,8 +11,8 @@ export const Row = styled.div`
   gap: 16px;
 `;
 
-export const Grid = styled.div<{ columns: number }>`
+export const Grid = styled.div`
   display: grid;
-  grid-template-columns: ${p => `repeat(${p.columns}, minmax(0, 1fr))`};
+  grid-template-columns: repeat(var(--columns), minmax(0, 1fr));
   gap: 16px;
 `;

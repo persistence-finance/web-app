@@ -1,3 +1,4 @@
+import { Breakpoints } from "../Theme"
 import { PropsWithChildren } from "react"
 import { ArrowRight } from "react-feather"
 import styled from "styled-components"
@@ -23,5 +24,9 @@ const Wrapper = styled.a`
 
   &:hover {
     text-decoration: underline;
+  }
+
+  ${Breakpoints.Md} {
+    font-size: 1rem;
   }
 `

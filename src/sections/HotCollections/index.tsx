@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { CollectionCard } from './Card';
-import { Bar, Heading, Link, Grid } from 'components';
+import { Bar, Heading, Link, Grid, Breakpoints } from 'components';
 
 export const HotCollections = () => {
   return (
@@ -10,7 +10,7 @@ export const HotCollections = () => {
         <Link>View All</Link>
       </Bar>
 
-      <Grid columns={4}>
+      <Grid>
         <CollectionCard
           title="Top-notch artworks"
           subtitle="$128.5K"
@@ -40,5 +40,11 @@ export const HotCollections = () => {
   );
 };
 
-const Wrapper = styled.section``;
+const Wrapper = styled.section`
+  --columns: 4;
+
+  ${Breakpoints.Md} {
+    --columns: 2;
+  }
+`;
 
