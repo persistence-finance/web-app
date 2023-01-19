@@ -1,13 +1,20 @@
-import { useFrame } from '@react-three/fiber';
-import { Creative, CreativeItemMesh } from '../Creative';
-import { useRef } from 'react';
+import { useFrame, useThree } from '@react-three/fiber';
+import { OrbitControls } from '@react-three/drei';
+import { Creative } from '../Creative';
+import { LogoMesh } from '../Logo';
+import { useRef, RefObject } from 'react';
+import { Group } from 'three';
 import styled from 'styled-components';
 
 export const FullLoader = () => {
   return (
     <CreativeWrapper>
-      <Creative>
+      <Creative 
+        // ONLY NEEDED IF TAKING A SCREENSHOT
+        // gl={{ preserveDrawingBuffer: true }} 
+      >
         <CreativeLoader />
+        <OrbitControls />
       </Creative>
     </CreativeWrapper>
   );
@@ -21,25 +28,36 @@ const CreativeWrapper = styled.div`
   justify-content: center;
 `;
 
-const CreativeLoader = () => {
-  const ref = useRef<CreativeItemMesh>(null);
-
+export function useMeshSpinner(ref: RefObject<Group>) {
   useFrame((state, delta) => {
     if (ref.current) {
       ref.current.rotation.x += delta * 2;
       ref.current.rotation.y += delta * 2;
     }
   });
+}
 
-  return (
-    <mesh
-      position={[0, 0, 0]}
-      rotation={[Math.PI * 0.3, Math.PI * 1.8, 0]}
-      scale={1}
-      ref={ref}
-    >
-      <meshNormalMaterial />
-      <torusGeometry args={[1, 0.2]} />
-    </mesh>
-  );
+const CreativeLoader = () => {
+  const ref = useRef<Group>(null);
+
+  useMeshSpinner(ref);
+
+  return <LogoMesh barbellRef={ref} />;
 };
+
+
+function useTakeScreenshot () {
+  const gl = useThree((state) => state.gl);
+
+  const screenshot = () => {
+    const link = document.createElement('a');
+    link.setAttribute('download', 'canvas.png');
+    link.setAttribute(
+      'href',
+      gl.domElement.toDataURL('image/png').replace('image/png', 'image/octet-stream'),
+    );
+    link.click();
+  };
+
+  return screenshot
+}

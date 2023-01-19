@@ -1,12 +1,12 @@
-import { Canvas, useFrame } from '@react-three/fiber'
+import { Canvas, useFrame, RenderProps } from '@react-three/fiber'
 import { PerspectiveCamera } from '@react-three/drei'
 import { PropsWithChildren, RefObject, useEffect, useRef, forwardRef } from 'react'
 import { BufferGeometry, Material, Mesh } from 'three'
 import gsap from 'gsap'
 
-export const Creative = forwardRef(({ children }: PropsWithChildren, ref) => {
+export const Creative = forwardRef(({ children, ...props }: PropsWithChildren<RenderProps<HTMLCanvasElement>>, ref) => {
   return (
-    <Canvas ref={ref as RefObject<HTMLCanvasElement>}>
+    <Canvas ref={ref as RefObject<HTMLCanvasElement>} {...props}>
       <ambientLight />
       <pointLight position={[10, 10, 10]} />
       <PerspectiveCamera

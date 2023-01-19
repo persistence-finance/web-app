@@ -18,7 +18,11 @@ export const Sidebar = () => {
     <>
       <Spacer />
       <Wrapper>
-        <Logo />
+        <LogoWrapper>
+          <ReactLink to="/">
+            <Logo />
+          </ReactLink>
+        </LogoWrapper>
 
         <NavIcon to="/" icon={Home}>Home</NavIcon>
         <NavIcon to="/sales" icon={ShoppingCart}>Shop</NavIcon>
@@ -48,11 +52,17 @@ const Wrapper = styled.nav`
   bottom: 0;
   left: 0;
   background-color: var(--background-secondary);
-  padding-top: 32px;
   display: flex;
   flex-direction: column;
   z-index: 1;
 `;
+
+const LogoWrapper = styled.div`
+  height: 116px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
 
 const NavIcon = ({ children, to, icon: IconCmp }: PropsWithChildren<{ icon: Icon; to: string; }>) => {
   const isMatch = useMatch(to)

@@ -4,7 +4,7 @@ import { Button, Creative, gradientBorderOuter, gradientBorderInner, NormalMesh 
 export const Banner = () => (
   <Outer>
     <Inner>
-      <Typography>Persistence Pools Maximize Capital Efficienciency!</Typography>
+      <Typography>Persistence Pools Maximize Capital Efficiency!</Typography>
       <Button variant="filled">View record</Button>
 
       <CreativeWrapper>
