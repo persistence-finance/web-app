@@ -1,4 +1,4 @@
-import { PageLayout, Main, Aside, Search, Sidebar, GlobalStyle, AccountBar } from 'components';
+import { PageLayout, Main, Aside, Search, AccountBar } from 'components';
 import { Banner, HotCollections, RecommendedNFTs, Balances, Earnings, Transactions, BalanceActions } from 'sections';
 
 function Home() {

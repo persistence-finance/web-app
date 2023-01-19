@@ -4,7 +4,8 @@ import { Button, Creative, gradientBorderOuter, gradientBorderInner, NormalMesh 
 export const Banner = () => (
   <Outer>
     <Inner>
-      <Typography>Persistence Pools Maximize Capital Efficiency!</Typography>
+      {/* <Typography>Persistence Pools Maximize Capital Efficiency!</Typography> */}
+      <Typography>Increase revenue utilizing blockchain and AI</Typography>
       <Button variant="filled">View record</Button>
 
       <CreativeWrapper>
