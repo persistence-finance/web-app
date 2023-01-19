@@ -45,7 +45,7 @@ export const Aside = styled.aside`
   gap: var(--gap);
 
   ${Breakpoints.Lg} {
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 0;
     transform: translate3d(100%, 0, 0);
