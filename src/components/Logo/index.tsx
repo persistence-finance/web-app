@@ -7,13 +7,14 @@ import { Group } from 'three';
 export const Logo = () => {
   return (
     <Wrapper>
-      <Canvas>
+      <LogoImage src="/assets/logo/256px.png" alt="Persistence Finance" />
+      {/* <Canvas>
         <LogoMesh />
 
-        {/* <OrbitControls /> */}
+        <OrbitControls />
         <ambientLight />
         <pointLight position={[10, 10, 10]} />
-      </Canvas>
+      </Canvas> */}
     </Wrapper>
   );
 };
@@ -61,3 +62,7 @@ const Wrapper = styled.div`
   width: 82px;
   height: 82px;
 `;
+
+const LogoImage = styled.img`
+  width: 100%;
+`
