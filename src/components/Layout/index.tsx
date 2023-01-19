@@ -12,6 +12,8 @@ export const Layout = styled.div`
 
   ${Breakpoints.Md} {
     flex-direction: column;
+    
+    --gap: 16px;
   }
 `;
 
