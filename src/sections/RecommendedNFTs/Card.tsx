@@ -30,8 +30,8 @@ export const NftCard = ({ title, subtitle, image, avatar }: NftCardProps) => {
 
       </GaussianBlur>
       <CardAvatarWrapper>
-        {/* <CardAvatar src={avatar} /> */}
-        <Creative>
+        <CardAvatar src={image} />
+        {/* <Creative>
           <NormalMesh
             position={[0, -0.7, 0]}
             rotation={[Math.PI * 0.3, Math.PI * 1.8, 0]}
@@ -40,7 +40,7 @@ export const NftCard = ({ title, subtitle, image, avatar }: NftCardProps) => {
           >
             {avatar}
           </NormalMesh>
-        </Creative>
+        </Creative> */}
       </CardAvatarWrapper>
       <CardContent>
         <CardTitle>{title}</CardTitle>

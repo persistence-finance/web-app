@@ -3,6 +3,7 @@ import {
   CardImageWrapper,
   CardImage,
   CardAvatarWrapper,
+  CardAvatar,
   CardContent,
   CardTitle,
   CardSubtitle,
@@ -25,7 +26,8 @@ export const CollectionCard = ({ title, subtitle, image, avatar }: CollectionCar
         <CardImage src={image} />
       </CardImageWrapper>
       <CardAvatarWrapper>
-        <Creative>
+        <CardAvatar src={image} />
+        {/* <Creative>
           <NormalMesh
             position={[0, -0.7, 0]}
             rotation={[Math.PI * 0.3, Math.PI * 1.8, 0]}
@@ -34,7 +36,7 @@ export const CollectionCard = ({ title, subtitle, image, avatar }: CollectionCar
           >
             {avatar}
           </NormalMesh>
-        </Creative>
+        </Creative> */}
       </CardAvatarWrapper>
       <CardContent textAlign="center">
         <CardTitle>{title}</CardTitle>

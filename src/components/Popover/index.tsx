@@ -77,7 +77,7 @@ export const PopoverTrigger = ({
   );
 };
 
-const Arrow = styled.svg`
+export const Arrow = styled.svg`
   position: absolute;
   fill: var(--border-color);
   stroke: var(--border-color);

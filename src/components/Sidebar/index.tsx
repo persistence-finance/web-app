@@ -46,6 +46,7 @@ const Wrapper = styled.nav`
   position: fixed;
   top: 0;
   bottom: 0;
+  left: 0;
   background-color: var(--background-secondary);
   padding-top: 32px;
   display: flex;

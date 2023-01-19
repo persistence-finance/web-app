@@ -1,22 +1,26 @@
 import React, { PropsWithChildren } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Layout, GlobalStyle, Sidebar, FullLoader } from 'components'
 
 const Home = React.lazy(() => import('./routes/Home'))
-
-const Loadable = ({ children }: PropsWithChildren) => <React.Suspense fallback={<>Loading</>}>
-  {children}
-</React.Suspense>
+const Sales = React.lazy(() => import('./routes/Sales'))
 
 function App () {
   return <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<Loadable><Home /></Loadable>} />
-      <Route path="/sales" element={<Loadable><Home /></Loadable>} />
-      <Route path="/trends" element={<Loadable><Home /></Loadable>} />
-      <Route path="/wallet" element={<Loadable><Home /></Loadable>} />
-      <Route path="/account" element={<Loadable><Home /></Loadable>} />
-      <Route path="/settings" element={<Loadable><Home /></Loadable>} />
-    </Routes>
+  <Layout>
+    <GlobalStyle />
+    <React.Suspense fallback={<FullLoader />}>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/sales" element={<Sales />} />
+        <Route path="/trends" element={<Home />} />
+        <Route path="/wallet" element={<Home />} />
+        <Route path="/account" element={<Home />} />
+        <Route path="/settings" element={<Home />} />
+      </Routes>
+    </React.Suspense>
+    <Sidebar />
+  </Layout>
   </BrowserRouter>
 }
 

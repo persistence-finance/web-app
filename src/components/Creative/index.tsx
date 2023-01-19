@@ -1,12 +1,12 @@
 import { Canvas, useFrame } from '@react-three/fiber'
 import { PerspectiveCamera } from '@react-three/drei'
-import { PropsWithChildren, RefObject, useEffect, useRef, useState } from 'react'
+import { PropsWithChildren, RefObject, useEffect, useRef, forwardRef } from 'react'
 import { BufferGeometry, Material, Mesh } from 'three'
 import gsap from 'gsap'
 
-export const Creative = ({ children }: PropsWithChildren) => {
+export const Creative = forwardRef(({ children }: PropsWithChildren, ref) => {
   return (
-    <Canvas>
+    <Canvas ref={ref as RefObject<HTMLCanvasElement>}>
       <ambientLight />
       <pointLight position={[10, 10, 10]} />
       <PerspectiveCamera
@@ -18,16 +18,20 @@ export const Creative = ({ children }: PropsWithChildren) => {
       {children}
     </Canvas>
   )
-}
+})
 
 interface CreativeItemProps {
   position?: [number, number, number]
   rotation?: [number, number, number]
-  scale?: number
+  scale?: number | [number, number, number]
   rotate?: number
+
+  onPointerOver?: (e: unknown) => void
+  onPointerOut?: (e: unknown) => void
+  onClick?: (e: unknown) => void
 }
 
-type CreativeItemMesh = Mesh<BufferGeometry, Material>
+export type CreativeItemMesh = Mesh<BufferGeometry, Material>
 
 export const StandardMesh = ({ children, ...props }: PropsWithChildren<CreativeItemProps>) => {
   const ref = useRef<CreativeItemMesh>(null)
@@ -44,8 +48,6 @@ export const StandardMesh = ({ children, ...props }: PropsWithChildren<CreativeI
 
 export const NormalMesh = ({ children, ...props }: PropsWithChildren<CreativeItemProps>) => {
   const ref = useRef<CreativeItemMesh>(null)
-  const [hovered, hover] = useState(false)
-  const [clicked, click] = useState(false)
 
   // useRotateOnScroll(ref, props)
   useFadeUp(ref, props)
@@ -54,10 +56,7 @@ export const NormalMesh = ({ children, ...props }: PropsWithChildren<CreativeIte
     <mesh
       {...props}
       ref={ref}
-      position={[0, -5, 0]}
-      onClick={(event) => click(!clicked)}
-      onPointerOver={(event) => hover(true)}
-      onPointerOut={(event) => hover(false)}>
+      position={[0, -5, 0]}>
       {children}
       <meshNormalMaterial />
     </mesh>

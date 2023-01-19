@@ -6,9 +6,14 @@ export const Layout = styled.div`
   justify-content: stretch;
   height: 100%;
   overflow: hidden;
+  flex-direction: row-reverse;
 
   --gap: 32px;
 `;
+
+export const PageLayout = styled.div`
+  display: flex;
+`
 
 export const Main = styled.main`
   flex: 1;

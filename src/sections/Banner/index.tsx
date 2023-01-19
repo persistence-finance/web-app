@@ -4,8 +4,8 @@ import { Button, Creative, gradientBorderOuter, gradientBorderInner, NormalMesh 
 export const Banner = () => (
   <Outer>
     <Inner>
-      <Typography>Much anticipated mystery NFT collection is live now!</Typography>
-      <Button variant="filled">View collection</Button>
+      <Typography>Persistence Pools Maximize Capital Efficienciency!</Typography>
+      <Button variant="filled">View record</Button>
 
       <CreativeWrapper>
         <Creative>
@@ -38,7 +38,7 @@ const Inner = styled.div`
 
 const Typography = styled.h1`
   color: var(--primary-text-color);
-  font-size: 3rem;
+  font-size: 2.8rem;
   margin-bottom: 2rem;
   position: relative;
   z-index: 1;
