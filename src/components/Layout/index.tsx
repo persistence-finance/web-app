@@ -13,6 +13,7 @@ export const Layout = styled.div`
 
 export const PageLayout = styled.div`
   display: flex;
+  flex: 1;
 `
 
 export const Main = styled.main`
