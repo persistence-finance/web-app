@@ -79,6 +79,8 @@ const LogoWrapper = styled.div`
     height: initial;
     flex-direction: row;
     align-items: center;
+
+    display: none;
   }
 `
 
