@@ -9,6 +9,7 @@ export const Search = () => (
 
 const Wrapper = styled.div`
   ${gradientBorderOuter}
+  max-width: 100%;
   width: 380px;
   height: 60px;
 `
