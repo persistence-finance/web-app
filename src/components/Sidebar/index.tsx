@@ -12,9 +12,11 @@ import {
   Icon,
   LogOut
 } from 'react-feather';
-import { Breakpoints } from 'components';
+import { Breakpoints } from '../Theme';
+import { useLayoutContext } from '../Layout';
 
 export const Sidebar = () => {
+  const { toggleAside } = useLayoutContext()
   return (
     <>
       <Spacer />
@@ -33,7 +35,7 @@ export const Sidebar = () => {
         <NavIcon to="/settings" icon={Settings}>Settings</NavIcon>
 
         <BottomIcons>
-          <Link>
+          <Link onClick={toggleAside}>
             <LogOut />
             <VisuallyHidden>Logout</VisuallyHidden>
           </Link>
