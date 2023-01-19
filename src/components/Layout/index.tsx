@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Breakpoints } from '../Theme'
 
 export const Layout = styled.div`
   display: flex;
@@ -14,6 +15,11 @@ export const Layout = styled.div`
 export const PageLayout = styled.div`
   display: flex;
   flex: 1;
+  overflow: hidden;
+
+  ${Breakpoints.Lg} {
+    flex-direction: column;
+  }
 `
 
 export const Main = styled.main`
@@ -28,10 +34,17 @@ export const Main = styled.main`
 `;
 
 export const Aside = styled.aside`
-  /* flex-basis: 440px; */
   width: 440px;
   display: flex;
   flex-direction: column;
   padding: var(--gap);
   gap: var(--gap);
+
+  ${Breakpoints.Lg} {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate3d(100%, 0, 0);
+    visibility: hidden;
+  }
 `;

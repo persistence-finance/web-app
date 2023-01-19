@@ -20,13 +20,16 @@ export const GlobalStyle = createGlobalStyle`
    --border-gradient: linear-gradient(to bottom, var(--border-color), var(--background-primary));
    --border-radius: 16px;
    --border-size: 4px;
- }
+  }
  * {
    font-family: 'Genos', sans-serif;
    box-sizing: border-box;
    letter-spacing: 0.08rem;
    margin: 0;
    outline-color: var(--primary-color);
+ }
+ html {
+   overflow-x: hidden;
  }
   body {
     background-color: var(--background-primary);
@@ -49,3 +52,7 @@ export const gradientBorderInner = css`
   background: var(--background-gradient);
   border-radius: calc(var(--border-radius) - var(--border-size));
 `
+
+export const Breakpoints = {
+  Lg: '@media (max-width: 1175px)'
+}
