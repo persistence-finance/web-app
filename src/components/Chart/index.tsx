@@ -39,22 +39,23 @@ export const BarChart = ({ series, popover, ...props }: BarChartProps) => {
                 x: ev.clientX,
                 y: ev.clientY,
               }
-              triggerRef.current = {
-                getBoundingClientRect: () => {
-                  if (creativeRef.current) {
-                    const rect = creativeRef.current.getBoundingClientRect().toJSON()
-                    const height = (v[1] / rect.height) * 1000;
-                    console.log({height, pointX: point.x, pointY: point.y })
-                    return new DOMRect(
-                      point.x,
-                      rect.y,
-                      1,
-                      rect.height
-                    )
-                  }
-                  return point
-                }
-              } as HTMLDivElement;
+              triggerRef.current = creativeRef.current
+              // if (triggerRef.current) {
+              //   triggerRef.current.getBoundingClientRect = () => {
+              //     if (creativeRef.current) {
+              //       const rect = creativeRef.current.getBoundingClientRect().toJSON()
+              //       const height = (v[1] / rect.height) * 1000;
+              //       console.log({height, pointX: point.x, pointY: point.y })
+              //       return new DOMRect(
+              //         point.x,
+              //         rect.y,
+              //         1,
+              //         rect.height
+              //       )
+              //     }
+              //     return new DOMRect(point.x, point.y)
+              //   }
+              // }
 
               if (hover !== v) {
                 setSelected(v)

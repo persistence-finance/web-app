@@ -81,11 +81,15 @@ const AsideWrapper = styled.aside<{ open?: boolean }>`
     position: fixed;
     top: 0;
     right: 0;
-    bottom: 46px;
+    bottom: 0;
     transition: ${p => p.open ? 'transform 0.3s ease-in, visibility 0s linear 0s' : 'transform 0.3s ease-in, visibility 0s linear 0.3s'};
     transform: ${p => p.open ? 'translate3d(0, 0, 0)' : 'translate3d(100%, 0, 0)'};
     visibility: ${p => p.open ? 'visible' : 'hidden'};
     overflow-y: auto;
     overflow-x: hidden;
+  }
+
+  ${Breakpoints.Md} {
+    bottom: 46px;
   }
 `;
