@@ -1,5 +1,13 @@
+import { useFrame } from '@react-three/fiber';
 import styled from 'styled-components';
-import { Button, Creative, gradientBorderOuter, gradientBorderInner, NormalMesh } from 'components';
+import {
+  Button,
+  Creative,
+  gradientBorderOuter,
+  gradientBorderInner,
+  NormalMesh,
+} from 'components';
+import { useMediaScale } from 'hooks/media';
 
 export const Banner = () => (
   <Outer>
@@ -10,19 +18,30 @@ export const Banner = () => (
 
       <CreativeWrapper>
         <Creative>
-          <NormalMesh
-            position={[0, -0.7, 0]}
-            rotation={[Math.PI * 0.3, Math.PI * 1.8, 0]}
-            rotate={0.01}
-            scale={2.75}
-          >
-            <torusGeometry args={[1, 0.2]} />
-          </NormalMesh>
+          <Torus />
         </Creative>
       </CreativeWrapper>
     </Inner>
   </Outer>
 );
+
+const Torus = () => {
+  const scale = useTorusScale()
+  return (
+    <NormalMesh
+      position={[0, -0.7, 0]}
+      rotation={[Math.PI * 0.3, Math.PI * 1.8, 0]}
+      rotate={0.01}
+      scale={scale}
+    >
+      <torusGeometry args={[1, 0.2]} />
+    </NormalMesh>
+  );
+};
+
+const useTorusScale = () => {
+  return useMediaScale([775, 1.45], [1175, 2.75])
+}
 
 const Outer = styled.section`
   ${gradientBorderOuter}
@@ -35,7 +54,7 @@ const Inner = styled.div`
   ${gradientBorderInner}
   padding: 40px;
   padding-right: 30%;
-`
+`;
 
 const Typography = styled.h1`
   color: var(--primary-text-color);

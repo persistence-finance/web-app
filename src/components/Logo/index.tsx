@@ -3,6 +3,7 @@ import { OrbitControls } from '@react-three/drei';
 import styled from 'styled-components';
 import { ForwardedRef, forwardRef, RefObject } from 'react';
 import { Group } from 'three';
+import { Breakpoints } from '../Theme';
 
 export const Logo = () => {
   return (
@@ -61,6 +62,11 @@ export const LogoMesh = (props: { onClick?: () => void; barbellRef?: RefObject<G
 const Wrapper = styled.div`
   width: 82px;
   height: 82px;
+  
+  ${Breakpoints.Md} {
+    width: 48px;
+    height: 48px;
+  }
 `;
 
 const LogoImage = styled.img`

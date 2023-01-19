@@ -27,32 +27,30 @@ export const GlobalStyle = createGlobalStyle`
    letter-spacing: 0.08rem;
    margin: 0;
    outline-color: var(--primary-color);
- }
- html {
-   overflow-x: hidden;
- }
+  }
   body {
     background-color: var(--background-primary);
   }
   html, body, #root {
+    overflow-x: hidden;
     /* height: 100%; */
   }
 `;
-
 
 export const gradientBorderOuter = css`
   background-color: var(--background-primary);
   background: var(--border-gradient);
   border-radius: var(--border-radius);
   padding: var(--border-size);
-`
+`;
 
 export const gradientBorderInner = css`
   background-color: var(--background-secondary);
   background: var(--background-gradient);
   border-radius: calc(var(--border-radius) - var(--border-size));
-`
+`;
 
 export const Breakpoints = {
-  Lg: '@media (max-width: 1175px)'
-}
+  Md: '@media (max-width: 768px)',
+  Lg: '@media (max-width: 1175px)',
+};

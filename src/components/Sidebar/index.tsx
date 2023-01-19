@@ -12,6 +12,7 @@ import {
   Icon,
   LogOut
 } from 'react-feather';
+import { Breakpoints } from 'components';
 
 export const Sidebar = () => {
   return (
@@ -44,6 +45,10 @@ export const Sidebar = () => {
 
 const Spacer = styled.div`
   width: 100px;
+
+  ${Breakpoints.Md} {
+    height: 50px;
+  }
 `
 
 const Wrapper = styled.nav`
@@ -55,6 +60,13 @@ const Wrapper = styled.nav`
   display: flex;
   flex-direction: column;
   z-index: 1;
+
+  ${Breakpoints.Md} {
+    flex-direction: row;
+    align-items: center;
+    top: initial;
+    right: 0;
+  }
 `;
 
 const LogoWrapper = styled.div`
@@ -62,6 +74,12 @@ const LogoWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  ${Breakpoints.Md} {
+    height: initial;
+    flex-direction: row;
+    align-items: center;
+  }
 `
 
 const NavIcon = ({ children, to, icon: IconCmp }: PropsWithChildren<{ icon: Icon; to: string; }>) => {
@@ -87,6 +105,17 @@ const Link = styled.a<{ active?: boolean }>`
   align-items: center;
   justify-content: center;
   margin-bottom: 1rem;
+
+  ${Breakpoints.Md} {
+    width: 50px;
+    height: 34px;
+    font-size: 1.4rem;
+    margin-bottom: 0;
+
+    &:first-of-type {
+      margin-left: auto;
+    }
+  }
 
   &:before {
     position: absolute;
@@ -125,4 +154,9 @@ const Link = styled.a<{ active?: boolean }>`
 
 const BottomIcons = styled.div`
   margin-top: auto;
+
+  ${Breakpoints.Md} {
+    margin-top: 0;
+    margin-left: auto;
+  }
 `

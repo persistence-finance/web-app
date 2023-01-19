@@ -6,16 +6,18 @@ export const Layout = styled.div`
   align-items: stretch;
   justify-content: stretch;
   height: 100%;
-  overflow: hidden;
   flex-direction: row-reverse;
 
   --gap: 32px;
+
+  ${Breakpoints.Md} {
+    flex-direction: column;
+  }
 `;
 
 export const PageLayout = styled.div`
   display: flex;
   flex: 1;
-  overflow: hidden;
 
   ${Breakpoints.Lg} {
     flex-direction: column;
