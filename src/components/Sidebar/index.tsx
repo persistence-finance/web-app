@@ -106,17 +106,6 @@ const Link = styled.a<{ active?: boolean }>`
   justify-content: center;
   margin-bottom: 1rem;
 
-  ${Breakpoints.Md} {
-    width: 50px;
-    height: 34px;
-    font-size: 1.4rem;
-    margin-bottom: 0;
-
-    &:first-of-type {
-      margin-left: auto;
-    }
-  }
-
   &:before {
     position: absolute;
     content: '';
@@ -148,6 +137,39 @@ const Link = styled.a<{ active?: boolean }>`
     }
     &:after {
       opacity: 1;
+    }
+  }
+
+  ${Breakpoints.Md} {
+    width: 50px;
+    height: 46px;
+    font-size: 1.4rem;
+    margin-bottom: 0;
+    padding: 6px 0;
+
+    &:first-of-type {
+      margin-left: auto;
+    }
+
+    &:before {
+      top: initial;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 60%;
+      background: radial-gradient(ellipse at bottom, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
+    }
+    
+    &:after {
+      top: initial;
+      width: 100%;
+      height: 6px;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      border-radius: 3px 3px 0 0;
+      background: ${p => p.active ? `linear-gradient(to right, var(--primary-color), var(--secondary-color))` : 'currentColor'};
     }
   }
 `;

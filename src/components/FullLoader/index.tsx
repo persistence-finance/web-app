@@ -14,7 +14,7 @@ export const FullLoader = () => {
         // gl={{ preserveDrawingBuffer: true }} 
       >
         <CreativeLoader />
-        <OrbitControls />
+        {/* <OrbitControls /> */}
       </Creative>
     </CreativeWrapper>
   );

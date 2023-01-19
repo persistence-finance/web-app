@@ -20,7 +20,7 @@ export const Logo = () => {
   );
 };
 
-export const LogoMesh = (props: { onClick?: () => void; barbellRef?: RefObject<Group> }) => {
+export const LogoMesh = (props: { position?: [number, number, number], onClick?: () => void; barbellRef?: RefObject<Group> }) => {
   return (
     <group {...props}>
       {/* BARBELL */}
