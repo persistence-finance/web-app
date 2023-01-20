@@ -8,25 +8,33 @@ import styled from 'styled-components';
 
 export const FullLoader = () => {
   return (
-    <CreativeWrapper>
-      <Creative 
-        // ONLY NEEDED IF TAKING A SCREENSHOT
-        // gl={{ preserveDrawingBuffer: true }} 
-      >
-        <CreativeLoader />
-        {/* <OrbitControls /> */}
-      </Creative>
-    </CreativeWrapper>
+    <FullWrapper>
+      <CreativeWrapper>
+        <Creative 
+          // ONLY NEEDED IF TAKING A SCREENSHOT
+          // gl={{ preserveDrawingBuffer: true }} 
+        >
+          <CreativeLoader />
+          {/* <OrbitControls /> */}
+        </Creative>
+      </CreativeWrapper>
+    </FullWrapper>
   );
 };
 
-const CreativeWrapper = styled.div`
+const FullWrapper = styled.div`
   flex: 1;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
 `;
+
+const CreativeWrapper = styled.div`
+  width: 200px;
+  height: 200px;
+  max-width: 100%;
+`
 
 export function useMeshSpinner(ref: RefObject<Group>) {
   useFrame((state, delta) => {
