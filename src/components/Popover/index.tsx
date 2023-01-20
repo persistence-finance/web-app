@@ -32,7 +32,7 @@ export const Popover = ({
 
   return (
     <Overlay>
-      <div {...underlayProps} className="underlay" />
+      <Underlay {...underlayProps} />
       <div {...popoverProps} ref={popoverRef} className="popover">
         <Arrow {...arrowProps} data-placement={placement}>
           <path d="M0 0,L6 6,L12 0" />
@@ -76,6 +76,15 @@ export const PopoverTrigger = ({
     </>
   );
 };
+
+export const Underlay = styled.div`
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--underlay);
+`
 
 export const Arrow = styled.svg`
   position: absolute;

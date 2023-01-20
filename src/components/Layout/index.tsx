@@ -1,6 +1,8 @@
-import { createContext, PropsWithChildren, useContext, useState } from 'react';
+import { createContext, PropsWithChildren, useContext, useLayoutEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Breakpoints } from '../Theme';
+import { Underlay } from '../Popover';
+import { useToggleScroll } from 'hooks/media';
 
 const LayoutContext = createContext<{
   asideOpen: boolean
@@ -19,6 +21,8 @@ export const Layout = ({ children }: PropsWithChildren) => {
 
   const toggleAside = () => setAsideOpen(o => !o)
 
+  useToggleScroll(asideOpen)
+
   return (
     <LayoutContext.Provider value={{ asideOpen, setAsideOpen, toggleAside }}>
       <LayoutWrapper>{children}</LayoutWrapper>
@@ -35,16 +39,14 @@ export const PageLayout = styled.div`
   }
 `;
 
-export const Main = styled.main`
-  flex: 1;
-  border: calc(var(--border-size) / 2) solid var(--border-color);
-  border-top: 0;
-  border-bottom: 0;
-  display: flex;
-  flex-direction: column;
-  padding: var(--gap);
-  gap: var(--gap);
-`;
+export const Main = ({ children }: PropsWithChildren) => {
+  const { asideOpen, toggleAside } = useLayoutContext();
+
+  return <MainWrapper disabled={asideOpen}>
+    {children}
+    {asideOpen && <Underlay onClick={toggleAside} />}
+  </MainWrapper>
+};
 
 export const Aside = ({ children }: PropsWithChildren) => {
   const { asideOpen } = useLayoutContext();
@@ -59,14 +61,22 @@ const LayoutWrapper = styled.div`
   height: 100%;
   flex-direction: row-reverse;
 
-  --gap: 32px;
-
   ${Breakpoints.Md} {
     flex-direction: column;
-
-    --gap: 16px;
   }
 `;
+
+const MainWrapper = styled.main<{ disabled?: boolean }>`
+  position: relative;
+  flex: 1;
+  border: calc(var(--border-size) / 2) solid var(--border-color);
+  border-top: 0;
+  border-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  padding: var(--gap);
+  gap: var(--gap);
+`
 
 const AsideWrapper = styled.aside<{ open?: boolean }>`
   background-color: var(--background-primary);

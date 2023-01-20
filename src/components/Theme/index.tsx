@@ -1,5 +1,10 @@
 import { createGlobalStyle, css } from 'styled-components';
 
+export const Breakpoints = {
+  Md: '@media (max-width: 768px)',
+  Lg: '@media (max-width: 1175px)',
+};
+
 export const GlobalStyle = createGlobalStyle`
  :root {
    --background-primary: hsl(232, 20%, 14%);
@@ -9,6 +14,7 @@ export const GlobalStyle = createGlobalStyle`
    --main-text-color: hsl(228, 3%, 73%);
    --secondary-text-color: hsl(229 4% 53%);
    --bold-text-color: hsl(0, 0%, 100%);
+   --underlay: hsl(0 0% 0% / 70%);
    --white: hsl(0, 0%, 100%);
    --primary-color: hsl(262 86% 58%);
    --secondary-color: hsl(207 96% 52%);
@@ -20,6 +26,11 @@ export const GlobalStyle = createGlobalStyle`
    --border-gradient: linear-gradient(to bottom, var(--border-color), var(--background-primary));
    --border-radius: 16px;
    --border-size: 4px;
+   --gap: 32px;
+
+   ${Breakpoints.Md} {
+      --gap: 16px;
+    }
   }
  * {
    font-family: 'Genos', sans-serif;
@@ -49,8 +60,3 @@ export const gradientBorderInner = css`
   background: var(--background-gradient);
   border-radius: calc(var(--border-radius) - var(--border-size));
 `;
-
-export const Breakpoints = {
-  Md: '@media (max-width: 768px)',
-  Lg: '@media (max-width: 1175px)',
-};

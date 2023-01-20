@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react';
 import { Link as ReactLink, useMatch } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Logo } from '../Logo';
 import {
   Home,
@@ -16,7 +16,7 @@ import { Breakpoints } from '../Theme';
 import { useLayoutContext } from '../Layout';
 
 export const Sidebar = () => {
-  const { toggleAside } = useLayoutContext()
+  const { asideOpen, toggleAside } = useLayoutContext()
   return (
     <>
       <Spacer />
@@ -35,10 +35,10 @@ export const Sidebar = () => {
         <NavIcon to="/settings" icon={Settings}>Settings</NavIcon>
 
         <BottomIcons>
-          <Link onClick={toggleAside}>
+          <MenuButton onClick={toggleAside} active={asideOpen}>
             <LogOut />
             <VisuallyHidden>Logout</VisuallyHidden>
-          </Link>
+          </MenuButton>
         </BottomIcons>
       </Wrapper>
     </>
@@ -98,85 +98,109 @@ const NavIcon = ({ children, to, icon: IconCmp }: PropsWithChildren<{ icon: Icon
 
 const VisuallyHidden = ({}: PropsWithChildren) => null;
 
-const Link = styled.a<{ active?: boolean }>`
-  position: relative;
-  display: block;
-  color: ${p => p.active ? 'var(--white)' : 'var(--main-text-color)'};
-  font-size: 1.8rem;
-  width: 100px;
-  height: 68px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 1rem;
+const iconButtonStyle = css<{ active?: boolean }>`
+position: relative;
+display: block;
+color: ${p => p.active ? 'var(--white)' : 'var(--main-text-color)'};
+font-size: 1.8rem;
+width: 100px;
+height: 68px;
+display: flex;
+align-items: center;
+justify-content: center;
+background: none;
+border: none;
+cursor: pointer;
+margin-bottom: 1rem;
+
+&:before {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 60%;
+  background: radial-gradient(ellipse at left, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+  opacity: ${p => p.active ? 1 : 0};
+  transition: opacity 0.3s ease-in;
+}
+
+&:after {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 6px;
+  border-radius: 0 3px 3px 0;
+  background: ${p => p.active ? `linear-gradient(to bottom, var(--primary-color), var(--secondary-color))` : 'currentColor'};
+  opacity: ${p => p.active ? 1 : 0};
+  transition: opacity 0.3s ease-in;
+}
+
+&:hover {
+  &:before {
+    opacity: 1;
+  }
+  &:after {
+    opacity: 1;
+  }
+}
+
+${Breakpoints.Md} {
+  width: 50px;
+  height: 46px;
+  font-size: 1.4rem;
+  margin-bottom: 0;
+  padding: 6px 0;
+
+  &:first-of-type {
+    margin-left: auto;
+  }
 
   &:before {
-    position: absolute;
-    content: '';
-    top: 0;
+    top: initial;
     left: 0;
+    right: 0;
     bottom: 0;
-    width: 60%;
-    background: radial-gradient(ellipse at left, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
-    opacity: ${p => p.active ? 1 : 0};
-    transition: opacity 0.3s ease-in;
+    width: 100%;
+    height: 60%;
+    background: radial-gradient(ellipse at bottom, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
   }
   
   &:after {
-    position: absolute;
-    content: '';
-    top: 0;
+    top: initial;
+    width: 100%;
+    height: 6px;
     left: 0;
     bottom: 0;
-    width: 6px;
-    border-radius: 0 3px 3px 0;
-    background: ${p => p.active ? `linear-gradient(to bottom, var(--primary-color), var(--secondary-color))` : 'currentColor'};
-    opacity: ${p => p.active ? 1 : 0};
-    transition: opacity 0.3s ease-in;
+    right: 0;
+    border-radius: 3px 3px 0 0;
+    background: ${p => p.active ? `linear-gradient(to right, var(--primary-color), var(--secondary-color))` : 'currentColor'};
   }
+}
+`
 
-  &:hover {
-    &:before {
-      opacity: 1;
-    }
-    &:after {
-      opacity: 1;
-    }
+const Link = styled.a<{ active?: boolean }>`
+  ${iconButtonStyle}
+`;
+
+const IconButton = styled.button<{ active?: boolean }>`
+  ${iconButtonStyle}
+`;
+
+const MenuButton = styled(IconButton)<{ active?: boolean }>`
+  display: none;
+
+  svg {
+    transition: transform 0.3s ease-in-out;
+    transform: ${p => p.active ? `rotate(0deg)` : `rotate(180deg)`};
   }
 
   ${Breakpoints.Md} {
-    width: 50px;
-    height: 46px;
-    font-size: 1.4rem;
-    margin-bottom: 0;
-    padding: 6px 0;
-
-    &:first-of-type {
-      margin-left: auto;
-    }
-
-    &:before {
-      top: initial;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      width: 100%;
-      height: 60%;
-      background: radial-gradient(ellipse at bottom, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
-    }
-    
-    &:after {
-      top: initial;
-      width: 100%;
-      height: 6px;
-      left: 0;
-      bottom: 0;
-      right: 0;
-      border-radius: 3px 3px 0 0;
-      background: ${p => p.active ? `linear-gradient(to right, var(--primary-color), var(--secondary-color))` : 'currentColor'};
-    }
+    display: revert;
   }
-`;
+`
 
 const BottomIcons = styled.div`
   margin-top: auto;

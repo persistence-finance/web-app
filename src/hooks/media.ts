@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useLayoutEffect, useState } from 'react'
 
 export function useWindowSize() {
   // Initialize state with undefined width/height so server and client renders match
@@ -37,4 +37,15 @@ export function useMediaScale (min: [number, number], max: [number, number]) {
   console.log(percent, portion, min[0])
 
   return min[1] + portion
+}
+
+
+export function useToggleScroll (enabled: boolean) {
+  useLayoutEffect(() => {
+    if (enabled) {
+      document.documentElement.style['overflow'] = 'hidden'
+    } else {
+      document.documentElement.style['overflow'] = 'initial'
+    }
+  }, [enabled])
 }
