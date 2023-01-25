@@ -197,7 +197,7 @@ const MenuButton = styled(IconButton)<{ active?: boolean }>`
     transform: ${p => p.active ? `rotate(0deg)` : `rotate(180deg)`};
   }
 
-  ${Breakpoints.Md} {
+  ${Breakpoints.Lg} {
     display: revert;
   }
 `

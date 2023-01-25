@@ -1,4 +1,4 @@
-import { gradientBorderOuter, gradientBorderInner } from '../Theme';
+import { gradientBorderOuter, gradientBorderInner, Breakpoints } from '../Theme';
 import { PropsWithChildren } from 'react';
 import styled from 'styled-components';
 
@@ -67,6 +67,10 @@ export const CardTitle = styled.h6`
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+
+  ${Breakpoints.Md} {
+    font-size: 1.25rem;
+  }
 `;
 
 export const CardSubtitle = styled.p`
@@ -75,6 +79,10 @@ export const CardSubtitle = styled.p`
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+
+  ${Breakpoints.Md} {
+    font-size: 1rem;
+  }
 `;
 
 const CardOuter = styled.article`
