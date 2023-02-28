@@ -11,7 +11,7 @@ export const GlobalStyle = createGlobalStyle`
    --background-secondary: hsl(229, 20%, 10%);
    --border-color: hsl(229, 15%, 22%);
    --primary-text-color: hsl(210, 92%, 85%);
-   --main-text-color: hsl(228, 3%, 73%);
+   --main-text-color: hsl(228, 3%, 83%);
    --secondary-text-color: hsl(229 4% 53%);
    --bold-text-color: hsl(0, 0%, 100%);
    --underlay: hsl(0 0% 0% / 70%);
@@ -43,7 +43,7 @@ export const GlobalStyle = createGlobalStyle`
     background-color: var(--background-primary);
   }
   html, body, #root {
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
     /* height: 100%; */
   }
 `;

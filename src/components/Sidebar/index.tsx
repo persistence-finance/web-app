@@ -19,27 +19,29 @@ export const Sidebar = () => {
   const { asideOpen, toggleAside } = useLayoutContext()
   return (
     <>
-      <Spacer />
+      {/* <Spacer /> */}
       <Wrapper>
-        <LogoWrapper>
-          <ReactLink to="/">
-            <Logo />
-          </ReactLink>
-        </LogoWrapper>
+        <Sticky>
+          <LogoWrapper>
+            <ReactLink to="/">
+              <Logo />
+            </ReactLink>
+          </LogoWrapper>
 
-        <NavIcon to="/" icon={Home}>Home</NavIcon>
-        <NavIcon to="/sales" icon={ShoppingCart}>Shop</NavIcon>
-        <NavIcon to="/trends" icon={BarChart}>Trends</NavIcon>
-        <NavIcon to="/wallet" icon={DollarSign}>Wallet</NavIcon>
-        <NavIcon to="/account" icon={User}>Account</NavIcon>
-        <NavIcon to="/settings" icon={Settings}>Settings</NavIcon>
+          <NavIcon to="/" icon={Home}>Home</NavIcon>
+          <NavIcon to="/sales" icon={ShoppingCart}>Shop</NavIcon>
+          <NavIcon to="/trends" icon={BarChart}>Trends</NavIcon>
+          <NavIcon to="/wallet" icon={DollarSign}>Wallet</NavIcon>
+          <NavIcon to="/account" icon={User}>Account</NavIcon>
+          <NavIcon to="/settings" icon={Settings}>Settings</NavIcon>
 
-        <BottomIcons>
-          <MenuButton onClick={toggleAside} active={asideOpen}>
-            <LogOut />
-            <VisuallyHidden>Logout</VisuallyHidden>
-          </MenuButton>
-        </BottomIcons>
+          <BottomIcons>
+            <MenuButton onClick={toggleAside} active={asideOpen}>
+              <LogOut />
+              <VisuallyHidden>Logout</VisuallyHidden>
+            </MenuButton>
+          </BottomIcons>
+        </Sticky>
       </Wrapper>
     </>
   );
@@ -54,22 +56,30 @@ const Spacer = styled.div`
 `
 
 const Wrapper = styled.nav`
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
+  position: relative;
   background-color: var(--background-secondary);
+  z-index: 1;
+
+  ${Breakpoints.Md} {
+    position: fixed;
+    top: initial;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+`;
+
+const Sticky = styled.div`
   display: flex;
   flex-direction: column;
-  z-index: 1;
+  position: sticky;
+  top: 0;
 
   ${Breakpoints.Md} {
     flex-direction: row;
     align-items: center;
-    top: initial;
-    right: 0;
   }
-`;
+`
 
 const LogoWrapper = styled.div`
   height: 116px;

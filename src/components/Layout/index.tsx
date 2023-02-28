@@ -71,11 +71,16 @@ const MainWrapper = styled.main<{ disabled?: boolean }>`
   flex: 1;
   border: calc(var(--border-size) / 2) solid var(--border-color);
   border-top: 0;
-  border-bottom: 0;
   display: flex;
   flex-direction: column;
   padding: var(--gap);
   gap: var(--gap);
+
+  ${Breakpoints.Md} {
+    flex-direction: column;
+    border-left: 0;
+    border-right: 0;
+  }
 `
 
 const AsideWrapper = styled.aside<{ open?: boolean }>`
@@ -86,6 +91,8 @@ const AsideWrapper = styled.aside<{ open?: boolean }>`
   flex-direction: column;
   padding: var(--gap);
   gap: var(--gap);
+
+  border-bottom: calc(var(--border-size) / 2) solid var(--border-color);
 
   ${Breakpoints.Lg} {
     position: fixed;

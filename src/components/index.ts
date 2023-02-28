@@ -4,6 +4,7 @@ export * from './Card';
 export * from './Chart';
 export * from './Creative';
 export * from './Flex';
+export * from './Footer';
 export * from './FullLoader';
 export * from './Header';
 export * from './Heading';
